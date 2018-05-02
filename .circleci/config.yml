@@ -11,7 +11,9 @@ jobs:
      - run: |
             docker run $DOCKER_ID_USER/launchboat
      - deploy: |
-            docker push $DOCKER_ID_USER/launchboat
+            if [ "${CIRCLE_BRANCH}" == "master" ]
+              docker push $DOCKER_ID_USER/launchboat
+            fi
 
 workflows:
   version: 2
