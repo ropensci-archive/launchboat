@@ -7,9 +7,9 @@ jobs:
      - run:  |
             docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
      - run: |
-            docker build -t $DOCKER_ID_USER/launchboat .
+            docker build -t $DOCKER_HUB_USER/launchboat .
      - run: |
-            docker run $DOCKER_ID_USER/launchboat
+            docker run $DOCKER_HUB_USER/launchboat
      - deploy:
            name: push to docker hub
            command: |
