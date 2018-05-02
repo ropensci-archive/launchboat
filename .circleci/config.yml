@@ -13,7 +13,7 @@ jobs:
      - deploy:
            name: push to docker hub
            command: |
-              if [ "${CIRCLE_BRANCH}" == "master" ]
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 docker push $DOCKER_ID_USER/launchboat
               fi
 
