@@ -15,16 +15,3 @@ jobs:
               docker push $DOCKER_ID_USER/launchboat
             fi
 
-workflows:
-  version: 2
-  main:
-    jobs:
-      - build
-  nightly:
-     triggers:
-       - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
-               only:
-                 - master
