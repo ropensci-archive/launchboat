@@ -10,8 +10,10 @@ jobs:
             docker build -t $DOCKER_ID_USER/launchboat .
      - run: |
             docker run $DOCKER_ID_USER/launchboat
-     - deploy: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]
-              docker push $DOCKER_ID_USER/launchboat
-            fi
+     - deploy:
+           name: push to docker hub
+           command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]
+                docker push $DOCKER_ID_USER/launchboat
+              fi
 
