@@ -4,16 +4,36 @@ jobs:
    machine: true
    steps:
      - checkout
-     - run:  |
-            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-     - run: |
+     - run:
+           name: Build Container
+           command: |
             docker build -t $DOCKER_HUB_USER/launchboat .
-     - run: |
+     - run:
+           name: Test Container
+           command: |
             docker run $DOCKER_HUB_USER/launchboat
      - deploy:
-           name: push to docker hub
+           name: Push to Docker Hub
            command: |
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
                 docker push $DOCKER_HUB_USER/launchboat
               fi
+
+workflows:
+   version: 2
+   main:
+     jobs:
+       - build
+   nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+     jobs:
+       - build
+
 
