@@ -4,7 +4,7 @@ jobs:
    machine: true
    steps:
      - checkout
-     - run  |
+     - run:  |
             docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
      - run: |
             docker build -t $DOCKER_ID_USER/launchboat .
@@ -12,3 +12,17 @@ jobs:
             docker run $DOCKER_ID_USER/launchboat
      - deploy: |
             docker push $DOCKER_ID_USER/launchboat
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+  nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
