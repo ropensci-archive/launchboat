@@ -15,10 +15,12 @@ In-progress work on a standard build environment and workflow for rOpenSci packa
 To-dos:
 
  - Move R code into **pkgreviewer** so script is minimal
- - Lots more.
+ - Do everything in temp directories so it doesn't matter where you run it and avoid
+   need for file mounting unless desired.
+ - Lots more
 
-Try it now with
+Try it now in a package directory with
 
-     docker run -v "$(pwd):/home/rstudio/pkg" noamross/launchboat pkgtest.R GITHUB_URL
+     docker run -v "$(pwd):/home/rstudio/pkg" noamross/launchboat
      
-It will make a an `ro-test` directory in the working directory with outputs.
+It should make a an `ro-test` subdirectory with outputs.

@@ -11,9 +11,11 @@ jobs:
      - run:
            name: Test Container
            command: |
+            mkdir pkg
+            cd pkg
             docker run -v "$(pwd):/home/rstudio/pkg" $DOCKER_HUB_USER/launchboat pkgtest.R https://github.com/ropensci/plater
      - store_artifacts:
-          path: /root/main/ro-check/
+          path: /root/main/pkg/ro-check/
           destination: artifacts
      - deploy:
            name: Push to Docker Hub
