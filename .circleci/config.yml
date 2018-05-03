@@ -12,7 +12,7 @@ jobs:
            name: Test Container
            command: |
             docker run --name lboat $DOCKER_HUB_USER/launchboat pkgtest.R https://github.com/ropensci/plater
-            docker cp lboat:/home/rstudio/pkg /main/pkg
+            docker cp lboat:/home/rstudio/pkg /root/main/pkg
      - store_artifacts:
           path: /root/main/pkg/
           destination: artifacts
