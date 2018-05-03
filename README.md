@@ -17,6 +17,7 @@ To-dos:
  - Move R code into **pkgreviewer** so script is minimal
  - Do everything in temp directories so it doesn't matter where you run it and avoid
    need for file mounting unless desired.
+   -  post main HTML output via file.io
  - Lots more
 
 Try it now in a package directory with
