@@ -16,8 +16,14 @@ To-dos:
 
  - Move R code into **pkgreviewer** so script is minimal
  - Do everything in temp directories so it doesn't matter where you run it and avoid
-   need for file mounting unless desired.
-   -  post main HTML output via file.io
+   need for file mounting unless desired
+-  Make a single HTML output with everything the editor would want
+   -   DESCRIPTION
+   -   License check
+   -   CI and coverage checkes (via goodpracice)
+   -   Coverage report
+   -   R CMD check output
+-  Use hrbrmstr/fileio to post the HTML file temporarily and output the URL
  - Lots more
 
 Try it now in a package directory with
