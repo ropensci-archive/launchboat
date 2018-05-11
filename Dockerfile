@@ -7,8 +7,8 @@ RUN install2.r \
   argparse \
   fs \
   shiny \
+  goodpractice \
  && installGithub.r \
-   MangoTheCat/goodpractice \
    hrbrmstr/cloc \
    hrbrmstr/fileio \
    r-lib/devtools \
