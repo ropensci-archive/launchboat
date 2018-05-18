@@ -1,13 +1,14 @@
 FROM rocker/geospatial:latest
 MAINTAINER noam.ross@gmail.com
 
-# RUN Rscript -e "remove.packages(setdiff(rownames(installed.packages(priority = 'NA')), c('devtools', 'roxygen2', 'goodpractice', unique(unlist(tools::package_dependencies(c('devtools', 'roxygen2', 'goodpractice'), recursive = TRUE))))))" \
-
 RUN install2.r \
   argparse \
   fs \
   shiny \
   goodpractice \
+  spelling \
+  DT \
+  formattable \
  && installGithub.r \
    hrbrmstr/cloc \
    hrbrmstr/fileio \
@@ -18,6 +19,8 @@ RUN install2.r \
 WORKDIR /home/rstudio/pkg
 
 COPY pkgtest.R /usr/local/bin
+COPY coverage-report-widget.R /home/rstudio
+COPY pkg-report.Rmd /home/rstudio
 
 CMD pkgtest.R .
 

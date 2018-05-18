@@ -11,7 +11,10 @@ jobs:
      - run:
            name: Test Container
            command: |
-            docker run $DOCKER_HUB_USER/launchboat pkgtest.R https://github.com/ropensci/plater
+            OUTFILE=`docker run $DOCKER_HUB_USER/launchboat pkgtest.R https://github.com/ropensci/plater`
+            wget $OUTFILE -O test-report.html
+     - store_artifacts:
+          path: test-report.html
      - deploy:
            name: Push to Docker Hub
            command: |

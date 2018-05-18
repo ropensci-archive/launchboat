@@ -107,17 +107,19 @@ test_obj <- quietly(devtools::test)(params$pkgdir, reporter = testthat::SummaryR
 ```
 
 ```{r tests2, message = FALSE, warning=FALSE, echo = FALSE}
-fail_fmt <- formatter("span", style = x ~ style(display = "block",padding = "0 4px", `border-radius` = "4px",  `background-color` = ifelse(x, "lightpink", "white")))
-skip_fmt <- formatter("span", style = x ~ style(display = "block",padding = "0 4px", `border-radius` = "4px",  `background-color` = ifelse(x, "yellow", "white")))
+fail_fmt <- formatter("span",
+                      style = x ~ formattable::style("display" = "block", "padding" = "0 4px", "border-radius" = "4px",  "background-color" = ifelse(x, "lightpink", "white")))
+skip_fmt <- formatter("span",
+                      style = x ~ formattable::style("display" = "block", "padding" = "0 4px", "border-radius" = "4px",  "background-color" = ifelse(x, "yellow", "white")))
 
-as.data.frame(test_obj$result) %>% 
-  mutate_at(vars(failed, skipped, error, warning), as.logical) %>% 
+as.data.frame(test_obj$result) %>%
+  mutate_at(vars(failed, skipped, error, warning), as.logical) %>%
   arrange(desc(failed), desc(error), desc(warning), desc(skipped)) %>% formattable(list(
   error = fail_fmt,
   skipped = skip_fmt,
   warning = fail_fmt,
   failed = fail_fmt
-)) %>% 
+)) %>%
 as.datatable(rownames=FALSE, autoHideNavigation = TRUE, width = "100%")
 ```
 
@@ -126,7 +128,7 @@ as.datatable(rownames=FALSE, autoHideNavigation = TRUE, width = "100%")
 ***TODO: Cleanup the widget for this and make in a function in the package***
 
 ```{r covr, echo=FALSE}
-source("coverage-report-widget.R")
+source("/home/rstudio/coverage-report-widget.R")
 if(!is.null(gp_obj$result)) {
 covr_report <- report_widget(gp_obj$result$result$covr$coverage)
 covr_report
