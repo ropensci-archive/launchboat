@@ -1,6 +1,11 @@
 FROM rocker/geospatial:latest
 MAINTAINER noam.ross@gmail.com
 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    python3-dev python3-setuptools python3-pip
+RUN pip3 install -U pip
+RUN pip3 install mitmproxy
 RUN install2.r \
   argparse \
   fs \
@@ -13,8 +18,9 @@ RUN install2.r \
    hrbrmstr/cloc \
    hrbrmstr/fileio \
    r-lib/devtools \
-   r-lib/pkgdepends@6b992405f449a9ba963104892b4929296071a90b \
-   ropenscilabs/pkgreviewr
+   ropenscilabs/defender \
+   ropenscilabs/middlechild \
+   ropenscilabs/pkgreviewr@pkgtests
 
 WORKDIR /home/rstudio/pkg
 

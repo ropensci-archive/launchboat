@@ -20,9 +20,10 @@ if(R.utils::isUrl(args$package)) {
 }
 setwd(args$local_dir)
 
-
 devtools::install_deps(dependencies = TRUE, verbose = FALSE)
+
 devtools::install(build_vignettes = args$build_vignettes, verbose = FALSE)
+
 if(args$build_vignettes) {
   devtools::build_vignettes()
 }
@@ -31,6 +32,6 @@ outfile <- file.path(tempdir(), "pkg-report.html")
 rmarkdown::render("/home/rstudio/pkg-report.Rmd", params=list(pkgdir = args$local_dir),
                   output_file = outfile, envir = new.env(),
                   knit_root_dir = args$local_dir, quiet = FALSE)
-#devtools::install_github("hrbrmstr/fileio")
+
 fi_url <- fileio::fi_post_file(outfile)
-cat(fi_url$link)
+cat("\n", fi_url$link, "\n")
