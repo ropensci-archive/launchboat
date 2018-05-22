@@ -7,17 +7,13 @@ jobs:
      - run:
            name: Build Container
            command: |
-            docker build -t $DOCKER_HUB_USER/launchboat .
-     - run:
-           name: Test Container
-           command: |
-            docker run $DOCKER_HUB_USER/launchboat pkgtest.R https://github.com/ropensci/plater
-     - deploy:
+            docker build -t ropenscilabs/launchboat .
+ - deploy:
            name: Push to Docker Hub
            command: |
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-                docker push $DOCKER_HUB_USER/launchboat
+                docker push ropenscilabs/launchboat
               fi
 
 workflows:
