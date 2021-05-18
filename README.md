@@ -1,7 +1,8 @@
 # launchboat: a vessel for onboarding
 
-[![CircleCI](https://circleci.com/gh/noamross/launchboat.svg?style=svg)](https://circleci.com/gh/noamross/launchboat)
-[![](https://images.microbadger.com/badges/image/noamross/launchboat.svg)](https://hub.docker.com/r/noamross/launchboat/)
+*This repository is no longer active.  Related work continues at <https://github.com/ropenscilabs/pkgcheck>.*
+
+[![Project Status: Suspended – Initial development has started, but there has not yet been a stable, usable release; work has been stopped for the time being but the author(s) intend on resuming work.](https://www.repostatus.org/badges/latest/suspended.svg)](https://www.repostatus.org/#suspended)
 
 In-progress work on a standard build environment and workflow for rOpenSci package review.  Goals and todos:
 
